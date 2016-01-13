@@ -10,21 +10,23 @@ import (
 // You can change its output by log.SetOutput(%io.Writer%)
 // It's because this logger based on `log` standart package.
 type Logger struct {
-	sync.WaitGroup
 	in chan string
+	wg sync.WaitGroup
 }
 
 // NewLogger creates a new Logger
 func NewLogger() *Logger {
-	l := &Logger{}
-	l.in = make(chan string, 10)
-	l.Add(1)
+	l := &Logger{
+		in: make(chan string, 10),
+		wg: sync.WaitGroup{},
+	}
+	l.wg.Add(1)
 	go func(in <-chan string, wg *sync.WaitGroup) {
 		defer wg.Done()
 		for s := range in {
 			log.Print(s)
 		}
-	}(l.in, &l.WaitGroup)
+	}(l.in, &l.wg)
 	return l
 
 }
@@ -44,5 +46,5 @@ func (l *Logger) Printf(format string, args ...interface{}) {
 // Stop stops the logger. After that, the logger nothing will print.
 func (l *Logger) Stop() {
 	close(l.in)
-	l.Wait()
+	l.wg.Wait()
 }
