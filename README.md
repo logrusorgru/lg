@@ -30,7 +30,7 @@ go test $GOPATH/src/github.com/logrusorgru/lg
 
 Use it
 
-```
+```go
 package main
 
 import(
