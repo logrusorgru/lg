@@ -25,7 +25,7 @@ go get github.com/logrusorgru/lg
 Test it
 
 ```bash
-go test $GOPATH/src/github.com/logrusorgru/lg
+go test github.com/logrusorgru/lg
 ```
 
 Use it
