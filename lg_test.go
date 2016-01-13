@@ -81,14 +81,14 @@ func TestNewLogger(t *testing.T) {
 	}
 }
 
-const GO_LIMIT = 10
+const GoLimit = 10
 
 func TestLogger_Println(t *testing.T) {
 	c := Cap()
 	l := NewLogger()
 	wg := new(sync.WaitGroup)
-	wg.Add(GO_LIMIT)
-	for i := 0; i < GO_LIMIT; i++ {
+	wg.Add(GoLimit)
+	for i := 0; i < GoLimit; i++ {
 		go func(n int) {
 			defer wg.Done()
 			l.Println("gorutine no", n)
@@ -100,8 +100,8 @@ func TestLogger_Println(t *testing.T) {
 	l.Stop()
 	l.Println("will never printed")
 	c.Release()
-	lines := make([]string, 0, GO_LIMIT+2)
-	for i := 0; i < GO_LIMIT; i++ {
+	lines := make([]string, 0, GoLimit+2)
+	for i := 0; i < GoLimit; i++ {
 		lines = append(lines, fmt.Sprintln("gorutine no", i))
 	}
 	lines = append(lines, "waiting...\n")
@@ -122,8 +122,8 @@ func TestLogger_Printf(t *testing.T) {
 	c := Cap()
 	l := NewLogger()
 	wg := new(sync.WaitGroup)
-	wg.Add(GO_LIMIT)
-	for i := 0; i < GO_LIMIT; i++ {
+	wg.Add(GoLimit)
+	for i := 0; i < GoLimit; i++ {
 		go func(n int) {
 			defer wg.Done()
 			l.Printf("gorutine no '%0.4d'", n)
@@ -135,8 +135,8 @@ func TestLogger_Printf(t *testing.T) {
 	l.Stop()
 	l.Println("will never printed")
 	c.Release()
-	lines := make([]string, 0, GO_LIMIT+2)
-	for i := 0; i < GO_LIMIT; i++ {
+	lines := make([]string, 0, GoLimit+2)
+	for i := 0; i < GoLimit; i++ {
 		lines = append(lines, fmt.Sprintf("gorutine no '%0.4d'\n", i))
 	}
 	lines = append(lines, "waiting...\n")
