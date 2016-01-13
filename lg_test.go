@@ -163,6 +163,6 @@ func TestLogger_Stop(t *testing.T) {
 	l.Println("will never printed")
 	c.Release()
 	if c.Remains() != 0 {
-		t.Errorf("no empty output, got %d lines", 0, c.Remains())
+		t.Errorf("no empty output, got %d lines", c.Remains())
 	}
 }
