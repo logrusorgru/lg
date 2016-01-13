@@ -69,6 +69,7 @@ type s interface {
 
 func TestNewLogger(t *testing.T) {
 	l := NewLogger()
+	defer l.Stop()
 	if l == nil {
 		t.Error("NewLogger returns a nil value")
 		t.FailNow()
@@ -78,6 +79,29 @@ func TestNewLogger(t *testing.T) {
 	}
 	if !reflect.TypeOf(l).Implements(reflect.TypeOf((*s)(nil)).Elem()) {
 		t.Error("Logger hasn't a Stop method")
+	}
+	if cap(l.in) != defaultBufferSize {
+		t.Error("wrong buffer size for default logger")
+	}
+}
+
+func TestNewLoggerBufer(t *testing.T) {
+	bSize := 0
+	l := NewLoggerBuffer(bSize)
+	defer l.Stop()
+	if l == nil {
+		t.Error("NewLogger returns a nil value")
+		t.FailNow()
+	}
+	if !reflect.TypeOf(l).Implements(reflect.TypeOf((*pp)(nil)).Elem()) {
+		t.Error("Logger doesn't implements Println and Printf")
+	}
+	if !reflect.TypeOf(l).Implements(reflect.TypeOf((*s)(nil)).Elem()) {
+		t.Error("Logger hasn't a Stop method")
+	}
+	if cap(l.in) != bSize {
+		t.Errorf("wrong buffer size, expected %d, got %d",
+			bSize, cap(l.in))
 	}
 }
 
