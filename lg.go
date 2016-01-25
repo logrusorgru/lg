@@ -43,13 +43,13 @@ func NewLoggerBuffer(n int) *Logger {
 
 // Println works like `log.Println`
 func (l *Logger) Println(err ...interface{}) {
-	defer func() { recover() }()
+	defer func(){ recover() }()
 	l.in <- fmt.Sprintln(err...)
 }
 
 // Printf works like `log.Printf`
 func (l *Logger) Printf(format string, args ...interface{}) {
-	defer func() { recover() }()
+	defer func(){ recover() }()
 	l.in <- fmt.Sprintf(format, args...)
 }
 
