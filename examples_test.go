@@ -10,14 +10,14 @@ func ExampleLogger_Println() {
 	// intead of stderr (default)
 	log.SetOutput(os.Stdout)
 	// omit date-time (for example)
-	log.SetFlags(log.Lshortfile)
+	log.SetFlags(0)
 	// create new logger
 	l := NewLogger()
 	// stop it after
 	defer l.Stop()
 	l.Println("Hello, logger!")
 	// Output:
-	// lg.go:38: Hello, logger!
+	// Hello, logger!
 }
 
 func ExampleLogger_Printf() {
@@ -25,12 +25,12 @@ func ExampleLogger_Printf() {
 	// intead of stderr (default)
 	log.SetOutput(os.Stdout)
 	// omit date-time (for example)
-	log.SetFlags(log.Lshortfile)
+	log.SetFlags(0)
 	// create new logger
 	l := NewLogger()
 	// stop it after
 	defer l.Stop()
 	l.Printf("Hello, %d times!", 909)
 	// Output:
-	// lg.go:38: Hello, 909 times!
+	// Hello, 909 times!
 }
