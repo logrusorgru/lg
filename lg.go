@@ -1,5 +1,6 @@
 // Package lg is just primitive logger for Golang applications,
-// yeah it's thread safe
+// yeah it's thread safe. But it's useless if you want to use
+// log.Shortfile or log.Longfile log flags.
 package lg
 
 import (
@@ -43,13 +44,13 @@ func NewLoggerBuffer(n int) *Logger {
 
 // Println works like `log.Println`
 func (l *Logger) Println(err ...interface{}) {
-	defer func(){ recover() }()
+	defer func() { recover() }()
 	l.in <- fmt.Sprintln(err...)
 }
 
 // Printf works like `log.Printf`
 func (l *Logger) Printf(format string, args ...interface{}) {
-	defer func(){ recover() }()
+	defer func() { recover() }()
 	l.in <- fmt.Sprintf(format, args...)
 }
 

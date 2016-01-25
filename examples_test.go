@@ -17,7 +17,7 @@ func ExampleLogger_Println() {
 	defer l.Stop()
 	l.Println("Hello, logger!")
 	// Output:
-	// lg.go:37: Hello, logger!
+	// lg.go:38: Hello, logger!
 }
 
 func ExampleLogger_Printlf() {
@@ -32,5 +32,5 @@ func ExampleLogger_Printlf() {
 	defer l.Stop()
 	l.Printf("Hello, %d times!", 909)
 	// Output:
-	// lg.go:37: Hello, 909 times!
+	// lg.go:38: Hello, 909 times!
 }
