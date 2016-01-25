@@ -20,7 +20,7 @@ func ExampleLogger_Println() {
 	// lg.go:38: Hello, logger!
 }
 
-func ExampleLogger_Printlf() {
+func ExampleLogger_Printf() {
 	// set output to stdout
 	// intead of stderr (default)
 	log.SetOutput(os.Stdout)
