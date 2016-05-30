@@ -6,6 +6,7 @@ lg
 [![Build Status](https://travis-ci.org/logrusorgru/lg.svg)](https://travis-ci.org/logrusorgru/lg)
 [![Coverage Status](https://coveralls.io/repos/logrusorgru/lg/badge.svg?branch=master)](https://coveralls.io/r/logrusorgru/lg?branch=master)
 [![GoReportCard](http://goreportcard.com/badge/logrusorgru/lg)](http://goreportcard.com/report/logrusorgru/lg)
+[![paypal donate](https://img.shields.io/badge/paypal%20%24-donate-orange.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4SGZT64PRZ8Y)
 
 it's just primitive logger for Golang applications, yeah it's thread safe
 
